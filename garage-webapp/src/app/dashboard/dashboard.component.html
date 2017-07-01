@@ -1,0 +1,30 @@
+<h2>Dashboard</h2>
+
+<h4>Recent bills</h4>
+
+<table class="table table-striped" [mfData]="bills" #mf="mfDataTable" [mfRowsOnPage]="5">
+    <thead>
+    <tr>
+        <th style="width: 25%">
+            <mfDefaultSorter by="user">User</mfDefaultSorter>
+        </th>
+        <th style="width: 25%">
+            <mfDefaultSorter by="car">Car</mfDefaultSorter>
+        </th>
+        <th style="width: 25%">
+            <mfDefaultSorter by="concept">Concept</mfDefaultSorter>
+        </th>
+        <th style="width: 25%">
+            <mfDefaultSorter by="amount">Amount</mfDefaultSorter>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bill of bills">
+    	<td>{{bill.userValue}}</td>
+    	<td>{{bill.carValue}}</td>
+    	<td>{{bill.conceptValue}}</td>
+    	<td>{{bill.amount}} euros</td>
+    </tr>
+    </tbody>
+</table>

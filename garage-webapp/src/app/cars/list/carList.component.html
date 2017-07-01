@@ -1,0 +1,42 @@
+<form [formGroup]="carForm" novalidate>
+	<div *ngIf="cars.length > 0">
+		<h4>Cars</h4>
+		
+		<div *ngIf="formErrors.single" class="alert alert-danger">
+		  {{ formErrors.single }}
+		</div>
+		
+		<div formArrayName="cars" class="well well-lg">
+			<div *ngFor="let car of cars.controls; let i=index"	[formGroupName]="i">				
+				<label class="center-block">Model:
+					<input class="form-control" formControlName="model" required>				
+				</label>
+				
+				<label class="center-block">Enrollment: 
+					<input class="form-control" formControlName="enrollment" required>					
+				</label>
+	
+				<button (click)="updateCar(i)">Update car</button>
+				<button (click)="deleteCar(i)">Delete car</button>
+			</div>
+		</div>	
+	</div>
+	
+	<h4>Create car</h4>
+	
+	<div *ngIf="formErrors.general" class="alert alert-danger">
+	  {{ formErrors.general }}
+	</div>
+	<div *ngIf="showCarUpdated" class="alert alert-success">
+	  {{ formErrors.carUpdated }}
+	</div>
+	<label class="center-block">Model: 
+		<input class="form-control" placeholder="New model" formControlName="newModel" required/>
+	</label>
+	<label class="center-block">Enrollment: 
+		<input class="form-control" placeholder="New enrollment" formControlName="newEnrollment" required/>
+	</label>
+
+	<button (click)="createCar()">Create car</button>
+</form>
+	

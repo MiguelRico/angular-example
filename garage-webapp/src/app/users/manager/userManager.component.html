@@ -1,0 +1,49 @@
+<div *ngIf="user">
+	<h2>User Details</h2>
+	<h4>User</h4>
+	
+	<form [formGroup]="userForm" novalidate>
+		
+		<div class="form-group">
+			<div *ngIf="formErrors.general" class="alert alert-danger">
+			  {{ formErrors.general }}
+			</div>
+		
+			<div>
+				<label class="inline-block">Dni: 
+					<input class="form-control"	[(ngModel)]="user.dni" placeholder="Dni" formControlName="dni" required />
+					<div *ngIf="formErrors.dni" class="alert alert-danger">
+					  {{ formErrors.dni }}
+					</div>
+				</label>
+				
+				<label class="inline-block">Name: 
+					<input class="form-control" [(ngModel)]="user.name" placeholder="Name" formControlName="name" required />				
+					<div *ngIf="formErrors.name" class="alert alert-danger">
+					  {{ formErrors.name }}
+					</div>
+				</label>		
+			
+				<label class="inline-block">Address: 
+					<input class="form-control" [(ngModel)]="user.address" placeholder="Address" formControlName="address" />
+				</label> 
+				
+				<label class="inline-block">Telephone: 
+					<input class="form-control" [(ngModel)]="user.telephone" placeholder="Telephone" formControlName="telephone" />
+					<div *ngIf="formErrors.telephone" class="alert alert-danger">
+					  {{ formErrors.telephone }}
+					</div>
+				</label>				
+			</div>
+			
+			<div class="form-group">				
+				<button (click)="update()">Update user</button>
+				<button (click)="delete(i)">Delete user</button>
+			</div>
+		</div>
+		
+		<app-car-list></app-car-list>
+
+	</form>
+	<button (click)="goBack()">Back</button>
+</div>

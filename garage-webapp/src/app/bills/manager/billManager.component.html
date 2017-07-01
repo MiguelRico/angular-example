@@ -1,0 +1,38 @@
+<form [formGroup]="billForm" novalidate>
+
+<h2>New Bill</h2>
+
+<div class="form-group">
+	<div *ngIf="formErrors.single" class="alert alert-danger">
+	  {{ formErrors.single }}
+	</div>
+	
+	<div class="well well-lg">
+	
+		<label class="center-block">User: 
+			<select [(ngModel)]="selectedUser" (ngModelChange)="onChangeUser($event)" formControlName="selectedUser" required>
+				<option *ngFor="let user of users" [ngValue]="user.id">{{user.name}}</option>
+			</select>
+		</label>
+		
+		<label class="center-block">Car: 
+			<select [(ngModel)]="selectedCar" formControlName="selectedCar" required>
+				<option *ngFor="let car of cars" [ngValue]="car">{{car.model}}</option>
+			</select>
+		</label>
+		
+		<label class="center-block">Concept: 
+			<select [(ngModel)]="selectedConcept" formControlName="selectedConcept" required>
+				<option *ngFor="let concept of concepts" [ngValue]="concept">{{concept.name}}</option>
+			</select>
+		</label>		
+
+	</div>
+	
+	<label class="center-block">Amount: 
+		<input class="form-control" [(ngModel)]="amount" placeholder="Euros" formControlName="amount" required/>
+	</label>
+	
+	<button (click)="createBill()">Create bill</button>
+</div>
+</form>

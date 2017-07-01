@@ -1,0 +1,54 @@
+<h2>User List</h2>
+
+<form [formGroup]="userForm">
+	<div class="form-group">
+		<div formArrayName="users" class="well well-lg">
+			<div *ngFor="let user of users.controls; let i=index" [formGroupName]="i">
+			
+				<label class="center-block">Dni: 
+					<input class="form-control" formControlName="dni" [readonly]="true">
+				</label> 
+				
+				<label class="center-block">Name: 
+					<input class="form-control" formControlName="name" [readonly]="true">
+				</label>
+				
+				<label class="center-block">Address: 
+					<input class="form-control" formControlName="address" [readonly]="true">
+				</label>
+				
+				<label class="center-block">Telephone: 
+					<input class="form-control" formControlName="telephone" [readonly]="true">
+				</label>
+				
+				<button (click)="gotoDetail(i)">Show details</button>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div *ngIf="formErrors.general" class="alert alert-danger">
+			  {{ formErrors.general }}
+			</div>
+			
+			<label class="inline-block">Dni: 
+				<input class="form-control"	placeholder="Dni" formControlName="newDni" required/>
+			</label>			
+			
+			<label class="inline-block">Name: 
+				<input class="form-control" placeholder="Name" formControlName="newName" required/>
+			</label>			
+			
+			<label class="inline-block">Address: 
+				<input class="form-control"	placeholder="Address" formControlName="newAddress" />
+			</label>
+			
+			<label class="inline-block">Telephone: 
+				<input class="form-control" placeholder="Telephone" formControlName="newTelephone" required/>
+			</label>			
+		</div>
+	
+		<div class="form-group">
+		<button (click)="createUser()">Create user</button>
+		</div>
+	</div>	
+</form>
